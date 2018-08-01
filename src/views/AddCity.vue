@@ -5,17 +5,15 @@
 </template>
 
 <script>
-import GoogleMap from "@/components/GoogleMap"
+import GoogleMap from "@/components/GoogleMap";
 export default {
-    name: "addCity",
-    components: {
-        "google-map": GoogleMap
-    }
-}
+  name: "addCity",
+  components: {
+    "google-map": GoogleMap
+  }
+};
 </script>
 
 
 <style>
-
 </style>
-

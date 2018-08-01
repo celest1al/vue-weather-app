@@ -51,33 +51,33 @@ export default {
       return this.$store.state.darkMode;
     },
     buttonActive() {
-        if (!this.currentPlace) {
-            return true
-        } else {
-            return false
-        }
+      if (!this.currentPlace) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   methods: {
     goBack() {
-        this.$router.push("/");
+      this.$router.push("/");
     },
     setPlace(place) {
       this.currentPlace = place;
-        const marker = {
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng()
-        };
-        this.markers.push({
-          position: marker
-        });
-        this.places.push(place);
-        this.center = marker;
-        this.cityName = place.name;
+      const marker = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      };
+      this.markers.push({
+        position: marker
+      });
+      this.places.push(place);
+      this.center = marker;
+      this.cityName = place.name;
     },
     addMarker() {
       this.$store.commit("updateCityList", this.cityName);
-      this.currentPlace = null
+      this.currentPlace = null;
       this.$router.push("/");
     },
     geolocate() {

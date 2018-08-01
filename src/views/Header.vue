@@ -30,7 +30,7 @@
                     <section class="menu-header">
                         <span class="greeting__text">Welcome Back</span>
                         <div class="profile-image__container">
-                            <img src="https://avatars3.githubusercontent.com/u/5658460?s=460&v=4" alt="profile-image" class="profile__image">
+                            <img src="../assets/images/profile.jpg" alt="profile-image" class="profile__image">
                         </div>
                         <div class="account-details">
                             <span class="name__text">Fauzan Rindra</span>
