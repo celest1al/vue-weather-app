@@ -1,0 +1,204 @@
+<template>
+    <section @click="toCityDetail" class="weather__card" :class="{'weather__card-dark': darkMode}">
+        <span class="city-name__text">{{detail.name}}</span>
+        <div class="weather-icon__container">
+            <svg v-if="detail['weather'][0].main === 'Clouds' || detail['weather'][0].main === 'Haze'" viewBox="2436.9 -843.1 275.5 274.1">
+                <g data-name="cloudy icon" transform="translate(84 790)">
+                    <circle cx="137" cy="137" r="137" fill="#fff" data-name="Ellipse 23" transform="translate(2354 -1633)" />
+                    <path fill="#ffde17" d="M2523.4-1361.5a37.2 37.2 0 0 0 8.4-23.4c0-22-19.8-40-44.1-40l-3.4.1h-.5a39.8 39.8 0 0 0-39.4-33.7 40.1 40.1 0 0 0-10 1.2 40 40 0 0 0-35.2-21.2 40.1 40.1 0 0 0-38.5 29 137.4 137.4 0 0 1-7.8-45.8 138.8 138.8 0 0 1 2.8-27.8 137 137 0 0 1 8-25.8 137.8 137.8 0 0 1 12.7-23.4 138.8 138.8 0 0 1 16.8-20.4 138.8 138.8 0 0 1 20.4-16.9 137.8 137.8 0 0 1 23.4-12.7 137 137 0 0 1 25.9-8 138.8 138.8 0 0 1 27.7-2.8 138.8 138.8 0 0 1 27.8 2.8 137 137 0 0 1 25.9 8 137.8 137.8 0 0 1 23.4 12.7 138.8 138.8 0 0 1 20.4 16.9 138.7 138.7 0 0 1 16.8 20.4 137.8 137.8 0 0 1 12.7 23.4 137 137 0 0 1 8 25.8 138.8 138.8 0 0 1 2.8 27.8 137.4 137.4 0 0 1-8 46.1 137.2 137.2 0 0 1-21.9 39.6 138.2 138.2 0 0 1-33.2 30.1 136.8 136.8 0 0 1-41.9 18z"
+                        data-name="Subtraction 1" />
+                </g>
+            </svg>
+
+            <svg v-else-if="detail['weather'][0].main === 'Rain' || detail['weather'][0].main === 'Drizzle'" viewBox="3170 -843.1 163.5 242.7">
+                <g data-name="Rain Icon">
+                    <g data-name="Water Drops">
+                        <path fill="#0032cc" d="M3295.4-824.5s85.8 133.5 0 133.5 0-133.5 0-133.5z" data-name="Path 7" />
+                        <path fill="#003eff" d="M3239.4-843s-156.1 242.6 0 242.6 0-242.7 0-242.7z" data-name="Path 3" />
+                    </g>
+                </g>
+            </svg>
+
+            <svg v-else-if="detail['weather'][0].main === 'Storm'" viewBox="3487.9 -810.7 291.2 200.3">
+                <g data-name="Strom icon" transform="translate(1959 -1260.7)">
+                    <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 14" rx="55.3" ry="51.7" transform="translate(1529 490.4)" />
+                    <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 15" rx="55.3" ry="51.7" transform="translate(1569.6 467.8)"
+                    />
+                    <circle cx="55.3" cy="55.3" r="55.3" class="cls-1" data-name="Ellipse 16" transform="translate(1618.9 476.8)" />
+                    <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 17" rx="55.3" ry="51.7" transform="translate(1631.8 450)" />
+                    <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 18" rx="55.3" ry="51.7" transform="translate(1687.1 477.5)"
+                    />
+                    <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 19" rx="55.3" ry="51.7" transform="translate(1709.6 507.3)"
+                    />
+                    <circle cx="55.3" cy="55.3" r="55.3" class="cls-1" data-name="Ellipse 20" transform="translate(1639.6 500.1)" />
+                    <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 21" rx="55.3" ry="51.7" transform="translate(1569.6 507.3)"
+                    />
+                    <path fill="none" stroke="#fd0" stroke-width="18" d="M1732.5 644l-61.4-61.4 22.5-10.3 26.8 5.1 9.5-22.4-38-37.2" data-name="Path 59"
+                    />
+                    <path fill="none" stroke="#fd0" stroke-width="15" d="M1597.2 539.5l31.2 25.9-24.8 22.2 17.3 36.2" data-name="Path 60" />
+                </g>
+            </svg>
+
+
+            <svg v-else-if="detail['weather'][0].main === 'Sunny' || detail['weather'][0].main === 'Clear'" viewBox="2050 -845 262 262">
+                <circle cx="131" cy="131" r="131" fill="#ffde17" data-name="Sun Icon" transform="translate(2050 -845)" />
+            </svg>
+
+        </div>
+        <div class="temperature-text__container">
+            <span class="temperature__text">{{ Math.round(detail.main.temp) }}</span>
+            <span class="temperature-metric__text">°</span>
+            <span class="weather-condition__text">{{ detail['weather'][0].main }}</span>
+        </div>
+        <section class="min-max__container">
+            <div class="min__container">
+                <svg class="min-arrow__icon" viewBox="188.5 807 21 21">
+                    <path fill="#00ff9b" d="M209.5 817.5h-21L199 828z" data-name="Min Arrow" />
+                </svg>
+
+                <span class="min-temperature__text">{{ Math.round(detail.main.temp_min) }}</span>
+                <span class="min__text">Min</span>
+            </div>
+            <div class="max__container">
+                <svg class="max-arrow__icon" viewBox="449.5 820 21 21">
+                    <path fill="red" d="M449.5 830.5h21L460 820z" data-name="Max Arrow" />
+                </svg>
+                <span class="max-temperature__text">{{ Math.round(detail.main.temp_max) }}</span>
+                <span class="max__text">Max</span>
+            </div>
+        </section>
+    </section>
+</template>
+
+<script>
+export default {
+  name: "weatherCard",
+  props: ["cityDetail"],
+  data() {
+    return {
+      detail: this.cityDetail
+    };
+  },
+  computed: {
+    darkMode() {
+      return this.$store.state.darkMode;
+    }
+  },
+  methods: {
+    toCityDetail() {
+      const cityName = this.detail.name.toLowerCase();
+      this.$router.push({
+        name: "detail",
+        params: { cityName }
+      });
+    }
+  }
+};
+</script>
+
+<style scoped>
+.weather__card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+  justify-items: center;
+  padding: 2rem;
+  margin: 2rem;
+  width: 19rem;
+  height: 30rem;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 1.75rem;
+  animation: fadein 1s ease-in-out 0ms 1;
+}
+
+.weather__card-dark {
+  background: linear-gradient(to bottom, #711b86, #00057a);
+  color: white;
+}
+
+.city-name__text {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1rem;
+}
+
+.temperature__text {
+  align-self: end;
+  width: 100%;
+  font-size: 4rem;
+  font-weight: 100;
+  letter-spacing: 0.1rem;
+}
+
+.temperature-metric__text {
+  text-align: start;
+  font-size: 3rem;
+}
+
+.min-max__container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.min__container,
+.max__container {
+  margin: 1rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.min-arrow__icon,
+.max-arrow__icon {
+  height: 1.25rem;
+  margin: auto;
+}
+
+.max-arrow__icon {
+  margin-bottom: -0.05rem;
+}
+
+.weather-condition__text {
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.max__text {
+  color: #ff0070;
+}
+
+.min__text {
+  color: #00ff9b;
+}
+
+.max__text,
+.min__text {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.max-temperature__text,
+.min-temperature__text {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.weather-icon__container {
+  width: 10rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.weather-icon__container > svg {
+  width: 10rem;
+}
+</style>

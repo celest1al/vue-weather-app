@@ -1,18 +1,41 @@
 <template>
-  <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="card__container">
+    <weather-card v-for="(city, index) of citiesWeather" :key="index" :cityDetail="city" />
+    <add-city-card />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import WeatherCard from "@/components/WeatherCard.vue";
+import AddCityCard from "@/components/AddCityCard.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    "weather-card": WeatherCard,
+    "add-city-card": AddCityCard
+  },
+  computed: {
+    citiesWeather() {
+      return this.$store.state.cityWeatherList;
+    }
+  },
+  created() {
+    const cities = this.$store.state.cities;
+    for (let city of cities) {
+      this.$store.dispatch("getCityWeatherList", city);
+    }
   }
 };
 </script>
+
+<style scoped>
+.card__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto-fill, 1fr);
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+}
+</style>
